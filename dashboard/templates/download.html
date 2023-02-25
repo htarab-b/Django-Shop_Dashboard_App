@@ -1,0 +1,26 @@
+<form action="" method="get">
+    Filter By Customer : &nbsp;
+    {% for user in users %}
+        <input type="checkbox" name="user[]" id="user[]" value="{{ user.username }}">{{ user.username }}
+    {% endfor %} <br>
+    Filter By Shop : &nbsp;
+    {% for shop in shops %}
+        <input type="checkbox" name="shop[]" id="shop[]" value="{{ shop.shop_name }}">{{ shop.shop_name }}
+    {% endfor %} <br>
+    Filter By Status : &nbsp;
+    <select name="status" id="status">
+        <option value="all" selected>All</option>
+        <option value="Order Delivered">Delivered</option>
+        <option value="Delivery Pending">Pending</option>
+    </select> <br>
+    <input type="submit" value="Filter">
+</form>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Download data as CSV">
+</form>
+{% for order in orders %}
+    Shop : {{ order.shop.shop_name }} <br>
+    Customer Name : {{ order.customer_name }} <br>
+    Delivery Status : {{ order.status }} <br><br>
+{% endfor %}

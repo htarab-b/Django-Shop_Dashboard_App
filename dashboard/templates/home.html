@@ -1,0 +1,5 @@
+{% for shop in shops %}
+    Shop Name : {{ shop.shop_name }} <br>
+    Owner : {{ shop.owner }} <br>
+    <a href="{% url 'order' %}?shop={{ shop.shop_name }}">Order</a> <br> <br>
+{% endfor %}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dashboard</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+        
+    /* On small screens, set height to 'auto' for the grid */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse visible-xs">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">{{ dashboard.shop_name }}</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Dashboard</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav hidden-xs">
+      <h2>{{ dashboard.shop_name }}</h2>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Dashboard</a></li>
+      </ul><br>
+    </div>
+    <br>
+    
+    <div class="col-sm-9">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="well">
+            <center><h4>Number of Orders Placed</h4></center>
+            <center><p>{{ dashboard.order_count }}</p></center>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <center><h4>Number of Orders Delivered</h4></center>
+            <center><p>{{ dashboard.delivered_count }}</p></center>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <center><h4>Number of Deliveries Pending</h4></center>
+            <center><p>{{ dashboard.pending_count }}</p></center>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="well">
+            <center><h4>Order Delivery Percentage</h4></center>
+            <center><p>{{ delivery_percent }}%</p></center>
+          </div>
+        </div>
+      </div>
+      <div class="well">
+        <center><h4>Add Orders</h4></center>
+        <form action="" method="post">
+          {% csrf_token %}
+          <center><label>Customer</label> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <input type="text" name="customer"> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <input type="submit" value="Add Order"></center>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="well">
+            <center><h4>Received Orders</h4></center>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <center><h4>Status</h4></center>
+          </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="well">
+              <center><h4>Action</h4></center>
+            </div>
+        </div>
+      </div>
+      {% for order in order_list %}
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="well">
+              <p>{{ order.customer_name }}</p> 
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="well">
+              <center><p>{{ order.status }}</p></center>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="well">
+              <center><p><a href="{% url 'changedeliverystatus' %}?order={{ order.id }}">Change Delivery Status</a></p></center>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
