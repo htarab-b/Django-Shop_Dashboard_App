@@ -9,4 +9,4 @@ Users who have integrated shops can only access the dashboard.
 
 
 
-> **Superuser - admin : adminpassword**
+## **Superuser - admin : adminpassword**
