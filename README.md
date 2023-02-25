@@ -7,4 +7,6 @@ To create a shop, the shop must be integrated with an owner who has to be an exi
 
 Users who have integrated shops can only access the dashboard.
 
-**Superuser - admin : adminpassword**
+
+
+***Superuser - admin : adminpassword***
