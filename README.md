@@ -1,5 +1,6 @@
 # Django-Shop_Dashboard_App
 Create a virtual environment and install requirements in requirements.txt **-Optional**
+
 Start a django server and open localhost in a browser.
 
 Shops can be added only on the admin panel but orders for any shop can be added once logged in with user id.
