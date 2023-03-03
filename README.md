@@ -40,4 +40,5 @@ python manage.py runserver
 
 
 ## Help
-Superuser - admin : adminpassword
+Superuser :
+> Username : admin <br>Password  : adminpassword
